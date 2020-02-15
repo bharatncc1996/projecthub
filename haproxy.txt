@@ -1,0 +1,9 @@
+frontend http_front
+        bind *:8081
+        stats uri /haproxy?stats
+        default_backend http_back
+
+backend http_back
+        balance roundrobin
+        server server1 127.0.0.1:8082 check
+        server server2 127.0.0.1:8083 check
